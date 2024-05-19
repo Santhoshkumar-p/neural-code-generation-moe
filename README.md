@@ -1,4 +1,4 @@
-# Mixture of Expert Model for Code Generation
+# Mixture of Experts Model for Code Generation
 This paper explores the efficacy of the Mixture-of-Experts (MoE) framework in code generation, showcasing superior performance compared to traditional monolithic model architectures. By applying MoE to code generation tasks across various programming languages, including Python, C++, Java, and Javascript, the study demonstrates enhanced precision and reduced computational overhead.  
 
 **Walkthrough Video** ->  https://youtu.be/FjxlqdsM-KI 
