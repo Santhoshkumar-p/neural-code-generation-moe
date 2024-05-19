@@ -1,5 +1,6 @@
 # Mixture of Expert Model for Code Generation
 This paper explores the efficacy of the Mixture-of-Experts (MoE) framework in code generation, showcasing superior performance compared to traditional monolithic model architectures. By applying MoE to code generation tasks across various programming languages, including Python, C++, Java, and Javascript, the study demonstrates enhanced precision and reduced computational overhead.
+| Presentation ->  https://youtu.be/FjxlqdsM-KI 
 
 # Overview
 The paper proposes a MoE framework tailored to code generation tasks, where different programming languages are handled by specialized expert models within the Mistral-7B base model. Through this architecture, the system optimally selects expert models based on the input code snippet's language, thereby improving output precision.
@@ -12,8 +13,25 @@ The paper proposes a MoE framework tailored to code generation tasks, where diff
 
 <img width="961" alt="image" src="https://github.com/Santhoshkumar-p/neural-code-generation-moe/assets/24734488/5bb27578-ffc9-494d-b2c2-169ed0258972">
 
+<img width="1096" alt="image" src="https://github.com/Santhoshkumar-p/neural-code-generation-moe/assets/24734488/be903e28-d20a-459a-90b6-bb85337129b9">
+
 # Dataset
 We used the xlcost-text-to-code dataset offered by organization "codeparrot" on Hugging Face
+
+# Training
+We adopted traditional fine-tuning techniques, specifically parameter-efficient fine-tuning (PEFT) with quantization using adapters (QLoRA) to cater to our resource-optimized requirements.
+
+## Example Dataset
+**Text:** Sum of sum | Function to find the sum ; Driver code
+**Program:**
+```python
+def sumOfSumSeries ( n ) :
+NEW_LINE INDENT return ( n * ( n + 1 ) * ( n + 2 ) ) // 6
+NEW_LINE DEDENT N = 5 NEW_LINE print ( sumOfSumSeries ( N ) )
+```
+
+# Training the Gating Network: 
+We train the gating network by simple back-propagation, along with the rest of the model. If we choose k > 1, the gate values for the top k experts have nonzero derivatives with respect to the weights of the gating network. Gradients also back-propagate through the gating network to its inputs.
 
 # Evaluation
 We leverage a system called CodeBLEU [9] to benchmark our models. CodeBLEU is a novel automatic evaluation metric proposed for code synthesis tasks like text-to-code, code translation,and code refinement.
